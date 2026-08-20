@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">/head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MACOKI Clinic & Maternity Home</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f9fc;
+    color:#17324d;
+    line-height:1.6;
+}
+
+header{
+    background:#075985;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:21px;
+    font-weight:bold;
+}
+
+.logo span{
+    display:block;
+    font-size:12px;
+    font-weight:normal;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+    font-size:14px;
+}
+
+nav a:hover{
+    text-decoration:underline;
+}
+
+.menu-btn{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.hero{
+    background:linear-gradient(135deg,#075985,#0e7490);
+    color:white;
+    text-align:center;
+    padding:90px 20px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin:15px 0;
+}
+
+.hero p{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.btn{
+    display:inline-block;
+    border:none;
+    padding:13px 20px;
+    border-radius:8px;
+    background:#0e7490;
+    color:white;
+    text-decoration:none;
+    cursor:pointer;
+    font-size:15px;
+    margin:5px;
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.btn-light{
+    background:white;
+    color:#075985;
+}
+
+.btn-danger{
+    background:#dc2626;
+}
+
+.btn-success{
+    background:#16a34a;
+}
+
+section{
+    padding:60px 20px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    color:#075985;
+    font-size:30px;
+}
+
+.section-title p{
+    color:#607080;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+
+.card h3{
+    color:#075985;
+    margin:10px 0;
+}
+
+.icon{
+    font-size:35px;
+}
+
+.about{
+    background:white;
+}
+
+.director{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:30px;
+    align-items:center;
+}
+
+.director-photo{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:#dff4f8;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:70px;
+}
+
+.service-category{
+    margin-bottom:30px;
+}
+
+.service-category h3{
+    color:#075985;
+    margin-bottom:15px;
+}
+
+.service-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:12px;
+}
+
+.service-item{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    border-left:4px solid #0e7490;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+/* ================= CLIENT PORTAL ================= */
+
+#portal{
+    background:#eaf6fa;
+}
+
+.portal-box{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    border-radius:18px;
+    box-shadow:0 5px 25px rgba(0,0,0,.1);
+    overflow:hidden;
+}
+
+.portal-header{
+    background:#075985;
+    color:white;
+    padding:25px;
+}
+
+.portal-header h2{
+    margin-bottom:5px;
+}
+
+.portal-nav{
+    display:flex;
+    flex-wrap:wrap;
+    background:#f1f5f9;
+    border-bottom:1px solid #ddd;
+}
+
+.portal-nav button{
+    flex:1;
+    min-width:130px;
+    padding:15px 10px;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    color:#075985;
+    font-weight:bold;
+}
+
+.portal-nav button:hover,
+.portal-nav button.active{
+    background:#d8f0f5;
+}
+
+.portal-content{
+    padding:25px;
+}
+
+.portal-page{
+    display:none;
+}
+
+.portal-page.active{
+    display:block;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:15px;
+    margin:20px 0;
+}
+
+.dashboard-card{
+    padding:20px;
+    border-radius:12px;
+    background:#f1f8fa;
+}
+
+.dashboard-card strong{
+    display:block;
+    font-size:24px;
+    color:#075985;
+    margin-top:5px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    font-size:15px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    outline:none;
+    border-color:#0e7490;
+    box-shadow:0 0 0 2px rgba(14,116,144,.12);
+}
+
+.success{
+    display:none;
+    background:#dcfce7;
+    color:#166534;
+    border-left:5px solid #16a34a;
+    padding:15px;
+    border-radius:8px;
+    margin:15px 0;
+}
+
+.info{
+    background:#eff6ff;
+    color:#1e40af;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.warning{
+    background:#fff7ed;
+    color:#9a3412;
+    padding:15px;
+    border-radius:8px;
+    margin:20px 0;
+}
+
+.appointment-card{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-left:5px solid #0e7490;
+    padding:18px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.appointment-card h3{
+    color:#075985;
+    margin-bottom:8px;
+}
+
+.status{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:20px;
+    background:#fef3c7;
+    color:#92400e;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.reminder{
+    padding:15px;
+    background:#f0fdf4;
+    border-left:5px solid #16a34a;
+    border-radius:8px;
+    margin-bottom:12px;
+}
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#64748b;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+footer{
+    background:#082f49;
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+}
+
+.whatsapp{
+    background:#16a34a;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .menu-btn{
+        display:block;
+    }
+
+    nav{
+        display:none;
+        position:absolute;
+        top:65px;
+        left:0;
+        width:100%;
+        background:#075985;
+        padding:15px;
+    }
+
+    nav.show{
+        display:block;
+    }
+
+    nav a{
+        display:block;
+        padding:12px;
+        margin:0;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .director{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .director-photo{
+        margin:auto;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .portal-nav button{
+        min-width:50%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+🏥 MACOKI
+<span>Clinic & Maternity Home</span>
+</div>
+
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<nav id="mainNav">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#team">Team</a>
+<a href="#portal">Client Portal</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- ================= HOME ================= -->
+
+<section class="hero" id="home">
+
+<div class="container">
+
+<div style="font-size:60px;">🏥</div>
+
+<h1>Welcome to MACOKI Clinic and Maternity Home</h1>
+
+<p>
+Quality Healthcare · Compassionate Care · Healthier Communities
+</p>
+
+<p>
+<strong>"Your health, our commitment."</strong>
+</p>
+
+<a href="#portal" class="btn btn-light">
+📅 Book an Appointment
+</a>
+
+<a href="#services" class="btn">
+Explore Services
+</a>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="about">
+
+<div class="container">
+
+<div class="section-title">
+<h2>🌿 About MACOKI</h2>
+<p>Welcome to MACOKI</p>
+</div>
+
+<div class="card">
+
+<h3>Patient-Centred Healthcare</h3>
+
+<p>
+MACOKI is a patient-centred healthcare organisation committed to making
+quality healthcare more accessible, convenient and compassionate.
+</p>
+
+<br>
+
+<h3>Our Approach</h3>
+
+<p>
+MACOKI is designed around a simple principle: healthcare should not only
+treat illness — it should also prevent disease, promote health and protect
+communities.
+</p>
+
+<br>
+
+<p>
+Our approach combines clinical healthcare, maternity services, public
+health, community health, diagnostics, pharmacy, nursing, midwifery,
+preventive healthcare, rehabilitation and appropriate specialist referral.
+</p>
+
+<br>
+
+<h3>Patient-Centred Care</h3>
+
+<p>
+We aim to create an environment where individuals and families can receive
+professional healthcare guidance throughout different stages of life —
+from consultation to diagnosis, treatment, prevention, follow-up and health
+education.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= DIRECTOR ================= -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+<h2>👨‍⚕️ Meet Our Director</h2>
+<p>Leadership</p>
+</div>
+
+<div class="director">
+
+<div class="director-photo">
+👨‍⚕️
+</div>
+
+<div>
+
+<h2>Mr. Okeanya Kingsley Madukaibeya</h2>
+
+<p>
+<strong>
+Director · Community Health Practitioner (CHP) ·
+Public Health Practitioner (PHP)
+</strong>
+</p>
+
+<br>
+
+<p>
+Mr. Okeanya Kingsley Madukaibeya is the Director of MACOKI Clinic and
+Maternity Home.
+</p>
+
+<br>
+
+<p>
+His professional focus includes primary healthcare, community health,
+disease prevention, health promotion, maternal and child health,
+health education and population health.
+</p>
+
+<br>
+
+<p>
+His leadership vision is to develop MACOKI into a trusted healthcare
+organisation where clinical services and public health work together
+to improve individual and community wellbeing.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MISSION ================= -->
+
+<section class="about">
+
+<div class="container">
+
+<div class="section-title">
+<h2>🎯 Mission & Vision</h2>
+<p>What Drives Us</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>🎯 Our Mission</h3>
+
+<p>
+To provide accessible, affordable, safe, compassionate and high-quality
+healthcare through a multidisciplinary approach that integrates medical
+care, maternity services, nursing, midwifery, public health, community
+health, diagnostics, pharmacy, preventive healthcare and appropriate
+referral.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>👁️ Our Vision</h3>
+
+<p>
+To become a trusted and respected healthcare institution in Nigeria,
+recognized for excellence in patient care, maternity services, public
+health, community health, diagnostics, preventive healthcare and
+professional service delivery.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= VALUES ================= -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+<h2>💎 What We Stand For</h2>
+<p>Our Core Values</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">❤️</div>
+<h3>Compassion</h3>
+<p>We treat every patient with kindness, empathy and understanding.</p>
+</div>
+
+<div class="card">
+<div class="icon">🩺</div>
+<h3>Professionalism</h3>
+<p>We maintain high standards of professional conduct.</p>
+</div>
+
+<div class="card">
+<div class="icon">🛡️</div>
+<h3>Patient Safety</h3>
+<p>We place patient safety and wellbeing at the centre of our services.</p>
+</div>
+
+<div class="card">
+<div class="icon">🤝</div>
+<h3>Integrity</h3>
+<p>We operate with honesty, transparency and accountability.</p>
+</div>
+
+<div class="card">
+<div class="icon">🔐</div>
+<h3>Confidentiality</h3>
+<p>We respect the privacy of patient information.</p>
+</div>
+
+<div class="card">
+<div class="icon">🌍</div>
+<h3>Accessibility</h3>
+<p>We strive to make appropriate healthcare easier to access.</p>
+</div>
+
+<div class="card">
+<div class="icon">👥</div>
+<h3>Teamwork</h3>
+<p>Better outcomes come from collaboration among professionals.</p>
+</div>
+
+<div class="card">
+<div class="icon">💡</div>
+<h3>Innovation</h3>
+<p>We embrace appropriate technology and modern approaches.</p>
+</div>
+
+<div class="card">
+<div class="icon">🏘️</div>
+<h3>Community Service</h3>
+<p>We promote disease prevention and healthier communities.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section id="services" class="about">
+
+<div class="container">
+
+<div class="section-title">
+<h2>🏥 What We Offer</h2>
+<p>Our Healthcare Services</p>
+</div>
+
+<div class="service-category">
+
+<h3>Clinical & Specialist Care</h3>
+
+<div class="service-list">
+
+<div class="service-item">👨‍⚕️ Medical Services</div>
+<div class="service-item">🚑 Accident & Emergency Care</div>
+<div class="service-item">👩‍⚕️ Nursing Services</div>
+<div class="service-item">🩹 Surgical Services</div>
+<div class="service-item">🦴 Orthopaedics & Trauma</div>
+<div class="service-item">🚻 Urology</div>
+<div class="service-item">👂 ENT Services</div>
+<div class="service-item">👁️ Eye Care</div>
+<div class="service-item">🦷 Dental Services</div>
+
+</div>
+
+</div>
+
+<div class="service-category">
+
+<h3>Maternal, Child & Family Health</h3>
+
+<div class="service-list">
+
+<div class="service-item">🤰 Obstetrics & Gynaecology</div>
+<div class="service-item">👩‍🍼 Midwifery Services</div>
+<div class="service-item">👶 Paediatrics & Child Health</div>
+
+</div>
+
+</div>
+
+<div class="service-category">
+
+<h3>Public & Community Health</h3>
+
+<div class="service-list">
+
+<div class="service-item">🌍 Public Health Department</div>
+<div class="service-item">🏘️ Community Health Services</div>
+<div class="service-item">🥗 Nutrition & Dietetics</div>
+
+</div>
+
+</div>
+
+<div class="service-category">
+
+<h3>Diagnostics, Pharmacy & Allied Support</h3>
+
+<div class="service-list">
+
+<div class="service-item">🧪 Medical Laboratory Services</div>
+<div class="service-item">🩻 Radiology & Medical Imaging</div>
+<div class="service-item">💊 Pharmacy Services</div>
+<div class="service-item">🧑‍🦽 Physiotherapy & Rehabilitation</div>
+<div class="service-item">📋 Health Information & Medical Records</div>
+<div class="service-item">🛡️ Infection Prevention & Control</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= TEAM ================= -->
+
+<section id="team">
+
+<div class="container">
+
+<div class="section-title">
+<h2>👥 Our People</h2>
+<p>Our Multidisciplinary Healthcare Team</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Medical Team</h3>
+<p>Medical Doctors & Physicians</p>
+<p>Family Physicians</p>
+<p>Obstetricians & Gynaecologists</p>
+<p>Paediatricians</p>
+</div>
+
+<div class="card">
+<h3>Nursing & Community Health</h3>
+<p>Nurses & Midwives</p>
+<p>Community Health Practitioners</p>
+<p>CHEWs</p>
+<p>Public Health Practitioners</p>
+</div>
+
+<div class="card">
+<h3>Diagnostic & Pharmaceutical</h3>
+<p>Medical Laboratory Scientists</p>
+<p>Pharmacists</p>
+<p>Radiographers</p>
+</div>
+
+<div class="card">
+<h3>Allied Health Professionals</h3>
+<p>Physiotherapists</p>
+<p>Nutritionists/Dietitians</p>
+<p>Dental professionals</p>
+<p>Medical Social Workers</p>
+</div>
+
+<div class="card">
+<h3>Support Services</h3>
+<p>Emergency personnel</p>
+<p>Administrative personnel</p>
+<p>Records personnel</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                    CLIENT PORTAL
+===================================================== -->
+
+<section id="portal">
+
+<div class="portal-box">
+
+<div class="portal-header">
+
+<h2>👤 MACOKI Client Portal</h2>
+
+<p>
+Manage your profile, appointments, services and reminders.
+</p>
+
+</div>
+
+
+<!-- PORTAL NAVIGATION -->
+
+<div class="portal-nav">
+
+<button class="active"
+onclick="showPortal('dashboard',this)">
+🏠 Dashboard
+</button>
+
+<button
+onclick="showPortal('register',this)">
+👤 My Profile
+</button>
+
+<button
+onclick="showPortal('appointment',this)">
+📅 Book Appointment
+</button>
+
+<button
+onclick="showPortal('appointments',this)">
+📋 My Appointments
+</button>
+
+<button
+onclick="showPortal('reminders',this)">
+🔔 Reminders
+</button>
+
+</div>
+
+
+<div class="portal-content">
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<div id="dashboard" class="portal-page active">
+
+<h2>Welcome to Your Client Dashboard</h2>
+
+<p id="welcomeMessage">
+Please complete your profile to begin.
+</p>
+
+<div class="dashboard-grid">
+
+<div class="dashboard-card">
+👤
+<strong id="dashName">--</strong>
+Client
+</div>
+
+<div class="dashboard-card">
+📅
+<strong id="appointmentCount">0</strong>
+Appointments
+</div>
+
+<div class="dashboard-card">
+🔔
+<strong id="reminderCount">0</strong>
+Reminders
+</div>
+
+<div class="dashboard-card">
+🏥
+<strong>MACOKI</strong>
+Clinic
+</div>
+
+</div>
+
+<div class="info">
+
+<strong>Client Portal:</strong>
+
+Use this portal to submit appointment requests and manage your
+basic client information.
+
+</div>
+
+<div class="warning">
+
+<strong>Important:</strong>
+
+This is a front-end demonstration. Do not enter highly sensitive
+medical records into this prototype.
+
+</div>
+
+<button
+class="btn"
+onclick="openPortalPage('appointment')">
+
+📅 Book Appointment
+
+</button>
+
+<button
+class="btn"
+onclick="openPortalPage('register')">
+
+👤 Complete Profile
+
+</button>
+
+</div>
+
+
+<!-- ================= PROFILE ================= -->
+
+<div id="register" class="portal-page">
+
+<h2>👤 Client Profile</h2>
+
+<p>Enter your basic information below.</p>
+
+<br>
+
+<form id="profileForm">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Full Name *</label>
+
+<input
+type="text"
+id="clientName"
+placeholder="Enter your full name"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Phone Number *</label>
+
+<input
+type="tel"
+id="clientPhone"
+placeholder="08012345678"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="clientEmail"
+placeholder="example@email.com">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Date of Birth</label>
+
+<input
+type="date"
+id="clientDOB">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Gender</label>
+
+<select id="clientGender">
+
+<option value="">Select gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Prefer not to say</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Emergency Contact Name</label>
+
+<input
+type="text"
+id="emergencyName"
+placeholder="Emergency contact name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Emergency Contact Phone</label>
+
+<input
+type="tel"
+id="emergencyPhone"
+placeholder="Emergency contact phone">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Address</label>
+
+<textarea
+id="clientAddress"
+placeholder="Enter your address"></textarea>
+
+</div>
+
+</div>
+
+<button
+class="btn"
+type="submit">
+
+💾 Save Profile
+
+</button>
+
+</form>
+
+<div
+id="profileSuccess"
+class="success">
+
+✅ Your profile has been saved successfully.
+
+</div>
+
+</div>
+
+
+<!-- ================= BOOK APPOINTMENT ================= -->
+
+<div id="appointment" class="portal-page">
+
+<h2>📅 Request an Appointment</h2>
+
+<p>
+Choose the service you require and your preferred date and time.
+</p>
+
+<br>
+
+<form id="appointmentForm">
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Full Name *</label>
+
+<input
+type="text"
+id="appointmentName"
+placeholder="Enter your full name"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Phone Number *</label>
+
+<input
+type="tel"
+id="appointmentPhone"
+placeholder="08012345678"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Healthcare Service *</label>
+
+<select
+id="service"
+required>
+
+<option value="">
+Choose a healthcare service
+</option>
+
+<option>General Consultation</option>
+<option>Medical Services</option>
+<option>Accident & Emergency Care</option>
+<option>Nursing Services</option>
+<option>Surgical Services</option>
+<option>Orthopaedics & Trauma</option>
+<option>Urology</option>
+<option>ENT Services</option>
+<option>Eye Care</option>
+<option>Dental Services</option>
+
+<option>Obstetrics & Gynaecology</option>
+<option>Midwifery Services</option>
+<option>Paediatrics & Child Health</option>
+
+<option>Public Health</option>
+<option>Community Health Services</option>
+<option>Nutrition & Dietetics</option>
+
+<option>Medical Laboratory Services</option>
+<option>Radiology & Medical Imaging</option>
+<option>Pharmacy Services</option>
+<option>Physiotherapy & Rehabilitation</option>
+
+<option>Health Information & Medical Records</option>
+<option>Infection Prevention & Control</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Preferred Date *</label>
+
+<input
+type="date"
+id="appointmentDate"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Preferred Time *</label>
+
+<input
+type="time"
+id="appointmentTime"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Appointment Type</label>
+
+<select id="appointmentType">
+
+<option>Clinic Visit</option>
+<option>Follow-up</option>
+<option>Health Education</option>
+<option>Community Health Consultation</option>
+<option>Maternity Consultation</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Additional Information</label>
+
+<textarea
+id="appointmentNotes"
+placeholder="Briefly tell us what you need assistance with"></textarea>
+
+</div>
+
+</div>
+
+<button
+class="btn"
+type="submit">
+
+📅 Submit Appointment Request
+
+</button>
+
+</form>
+
+<div
+id="appointmentSuccess"
+class="success">
+</div>
+
+</div>
+
+
+<!-- ================= APPOINTMENT HISTORY ================= -->
+
+<div id="appointments" class="portal-page">
+
+<h2>📋 My Appointments</h2>
+
+<p>
+View your submitted appointment requests below.
+</p>
+
+<br>
+
+<div id="appointmentList">
+
+<div class="empty">
+No appointments have been booked yet.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= REMINDERS ================= -->
+
+<div id="reminders" class="portal-page">
+
+<h2>🔔 Appointment Reminders</h2>
+
+<p>
+Your appointment reminders will appear here.
+</p>
+
+<br>
+
+<div id="reminderList">
+
+<div class="empty">
+No reminders available.
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="about">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>📞 Get in Touch</h2>
+
+<p>Contact MACOKI</p>
+
+</div>
+
+<div class="contact-grid">
+
+<div class="card">
+
+<h3>👨‍⚕️ Director</h3>
+
+<p>
+Mr. Okeanya Kingsley Madukaibeya
+</p>
+
+<p>
+CHP · PHP
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>📧 Email</h3>
+
+<p>
+macokiclinicandmaternityhome@gmail.com
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>📞 Phone</h3>
+
+<p>0903 727 7433</p>
+<p>0705 347 7686</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>💬 WhatsApp</h3>
+
+<p>
+Chat with MACOKI directly for enquiries and appointment requests.
+</p>
+
+<a
+class="btn whatsapp"
+href="https://wa.me/2349037277433"
+target="_blank"
+rel="noopener">
+
+💬 Chat on WhatsApp
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h2>💙 MACOKI Clinic and Maternity Home</h2>
+
+<p>Your health. Our commitment.</p>
+
+<br>
+
+<p>
+Caring for Individuals · Supporting Families ·
+Promoting Healthier Communities
+</p>
+
+<br>
+
+<p>
+MACOKI — Where Healthcare Meets Compassion.
+</p>
+
+</footer>
+
+
+<!-- =====================================================
+                       JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* ================= MOBILE MENU ================= */
+
+function toggleMenu(){
+
+    document
+    .getElementById("mainNav")
+    .classList.toggle("show");
+
+}
+
+
+/* ================= PORTAL NAVIGATION ================= */
+
+function showPortal(pageId, button){
+
+    document
+    .querySelectorAll(".portal-page")
+    .forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selectedPage =
+    document.getElementById(pageId);
+
+    if(selectedPage){
+
+        selectedPage.classList.add("active");
+
+    }
+
+
+    document
+    .querySelectorAll(".portal-nav button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+
+    loadPortalData();
+
+}
+
+
+/* ================= OPEN PORTAL PAGE ================= */
+
+function openPortalPage(pageId){
+
+    showPortal(pageId,null);
+
+}
+
+
+/* ================= STORAGE CHECK ================= */
+
+function storageAvailable(){
+
+    try{
+
+        const testKey =
+        "__macoki_storage_test__";
+
+        localStorage.setItem(testKey,"1");
+
+        localStorage.removeItem(testKey);
+
+        return true;
+
+    }catch(error){
+
+        return false;
+
+    }
+
+}
+
+
+/* ================= SAFE STORAGE ================= */
+
+function saveData(key,value){
+
+    if(!storageAvailable()){
+
+        alert(
+        "Browser storage is unavailable. Please check your browser settings."
+        );
+
+        return false;
+
+    }
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+
+    return true;
+
+}
+
+
+function getData(key, fallback){
+
+    if(!storageAvailable()){
+
+        return fallback;
+
+    }
+
+
+    try{
+
+        const data =
+        localStorage.getItem(key);
+
+        return data
+        ? JSON.parse(data)
+        : fallback;
+
+    }catch(error){
+
+        return fallback;
+
+    }
+
+}
+
+
+/* ================= PROFILE FORM ================= */
+
+document
+.getElementById("profileForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const profile = {
+
+        name:
+        document.getElementById("clientName").value.trim(),
+
+        phone:
+        document.getElementById("clientPhone").value.trim(),
+
+        email:
+        document.getElementById("clientEmail").value.trim(),
+
+        dob:
+        document.getElementById("clientDOB").value,
+
+        gender:
+        document.getElementById("clientGender").value,
+
+        emergencyName:
+        document.getElementById("emergencyName").value.trim(),
+
+        emergencyPhone:
+        document.getElementById("emergencyPhone").value.trim(),
+
+        address:
+        document.getElementById("clientAddress").value.trim()
+
+    };
+
+
+    if(saveData("macokiProfile",profile)){
+
+        const message =
+        document.getElementById("profileSuccess");
+
+        message.style.display="block";
+
+
+        setTimeout(function(){
+
+            message.style.display="none";
+
+        },4000);
+
+
+        loadPortalData();
+
+    }
+
+});
+
+
+/* ================= APPOINTMENT FORM ================= */
+
+document
+.getElementById("appointmentForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const name =
+    document
+    .getElementById("appointmentName")
+    .value
+    .trim();
+
+
+    const phone =
+    document
+    .getElementById("appointmentPhone")
+    .value
+    .trim();
+
+
+    const service =
+    document
+    .getElementById("service")
+    .value;
+
+
+    const date =
+    document
+    .getElementById("appointmentDate")
+    .value;
+
+
+    const time =
+    document
+    .getElementById("appointmentTime")
+    .value;
+
+
+    if(!name || !phone || !service || !date || !time){
+
+        alert(
+        "Please complete all required appointment fields."
+        );
+
+        return;
+
+    }
+
+
+    const appointment = {
+
+        id:Date.now(),
+
+        name:name,
+
+        phone:phone,
+
+        service:service,
+
+        date:date,
+
+        time:time,
+
+        type:
+        document
+        .getElementById("appointmentType")
+        .value,
+
+        notes:
+        document
+        .getElementById("appointmentNotes")
+        .value
+        .trim(),
+
+        status:"Pending Confirmation",
+
+        createdAt:
+        new Date().toISOString()
+
+    };
+
+
+    const appointments =
+    getData("macokiAppointments",[]);
+
+
+    appointments.push(appointment);
+
+
+    if(saveData("macokiAppointments",appointments)){
+
+        createReminder(appointment);
+
+
+        const success =
+        document.getElementById(
+        "appointmentSuccess"
+        );
+
+
+        success.innerHTML =
+        "✅ Appointment request submitted successfully. " +
+        "MACOKI will confirm your appointment.";
+
+
+        success.style.display="block";
+
+
+        document
+        .getElementById("appointmentForm")
+        .reset();
+
+
+        loadPortalData();
+
+
+        /*
+        WhatsApp message
+        */
+
+        const whatsappText =
+        "Hello MACOKI Clinic and Maternity Home.%0A%0A" +
+
+        "I have submitted an appointment request.%0A%0A" +
+
+        "Name: " +
+        encodeURIComponent(name) +
+
+        "%0APhone: " +
+        encodeURIComponent(phone) +
+
+        "%0AService: " +
+        encodeURIComponent(service) +
+
+        "%0ADate: " +
+        encodeURIComponent(date) +
+
+        "%0ATime: " +
+        encodeURIComponent(time) +
+
+        "%0AAppointment Type: " +
+        encodeURIComponent(appointment.type);
+
+
+        const whatsappURL =
+        "https://wa.me/2349037277433?text=" +
+        whatsappText;
+
+
+        setTimeout(function(){
+
+            window.open(
+            whatsappURL,
+            "_blank"
+            );
+
+        },700);
+
+
+        setTimeout(function(){
+
+            success.style.display="none";
+
+        },7000);
+
+    }
+
+});
+
+
+/* ================= CREATE REMINDER ================= */
+
+function createReminder(appointment){
+
+    const reminders =
+    getData("macokiReminders",[]);
+
+
+    reminders.push({
+
+        id:appointment.id,
+
+        title:"Appointment Reminder",
+
+        message:
+        "Appointment requested for " +
+        appointment.service +
+        " on " +
+        appointment.date +
+        " at " +
+        appointment.time,
+
+        date:appointment.date,
+
+        time:appointment.time
+
+    });
+
+
+    saveData(
+    "macokiReminders",
+    reminders
+    );
+
+}
+
+
+/* ================= LOAD PORTAL ================= */
+
+function loadPortalData(){
+
+    const profile =
+    getData("macokiProfile",null);
+
+
+    const appointments =
+    getData("macokiAppointments",[]);
+
+
+    const reminders =
+    getData("macokiReminders",[]);
+
+
+    /* PROFILE */
+
+    if(profile){
+
+        document
+        .getElementById("clientName")
+        .value =
+        profile.name || "";
+
+
+        document
+        .getElementById("clientPhone")
+        .value =
+        profile.phone || "";
+
+
+        document
+        .getElementById("clientEmail")
+        .value =
+        profile.email || "";
+
+
+        document
+        .getElementById("clientDOB")
+        .value =
+        profile.dob || "";
+
+
+        document
+        .getElementById("clientGender")
+        .value =
+        profile.gender || "";
+
+
+        document
+        .getElementById("emergencyName")
+        .value =
+        profile.emergencyName || "";
+
+
+        document
+        .getElementById("emergencyPhone")
+        .value =
+        profile.emergencyPhone || "";
+
+
+        document
+        .getElementById("clientAddress")
+        .value =
+        profile.address || "";
+
+
+        document
+        .getElementById("dashName")
+        .textContent =
+        profile.name || "--";
+
+
+        document
+        .getElementById("welcomeMessage")
+        .textContent =
+        "Welcome, " +
+        profile.name +
+        ". Manage your MACOKI appointments below.";
+
+    }
+
+
+    /* APPOINTMENT COUNT */
+
+    document
+    .getElementById("appointmentCount")
+    .textContent =
+    appointments.length;
+
+
+    /* REMINDER COUNT */
+
+    document
+    .getElementById("reminderCount")
+    .textContent =
+    reminders.length;
+
+
+    /* APPOINTMENT LIST */
+
+    const appointmentList =
+    document.getElementById(
+    "appointmentList"
+    );
+
+
+    if(appointments.length===0){
+
+        appointmentList.innerHTML =
+        `
+        <div class="empty">
+        📅 No appointments have been booked yet.
+        </div>
+        `;
+
+    }else{
+
+        appointmentList.innerHTML =
+        appointments
+        .slice()
+        .reverse()
+        .map(function(appointment){
+
+            return `
+
+            <div class="appointment-card">
+
+                <h3>
+                🏥 ${escapeHTML(appointment.service)}
+                </h3>
+
+                <p>
+                <strong>Patient:</strong>
+                ${escapeHTML(appointment.name)}
+                </p>
+
+                <p>
+                <strong>Phone:</strong>
+                ${escapeHTML(appointment.phone)}
+                </p>
+
+                <p>
+                <strong>Date:</strong>
+                ${escapeHTML(appointment.date)}
+                </p>
+
+                <p>
+                <strong>Time:</strong>
+                ${escapeHTML(appointment.time)}
+                </p>
+
+                <p>
+                <strong>Type:</strong>
+                ${escapeHTML(appointment.type)}
+                </p>
+
+                <p>
+                <strong>Status:</strong>
+                <span class="status">
+                ${escapeHTML(appointment.status)}
+                </span>
+                </p>
+
+                ${
+                    appointment.notes
+                    ?
+                    `
+                    <p>
+                    <strong>Additional information:</strong>
+                    ${escapeHTML(appointment.notes)}
+                    </p>
+                    `
+                    :
+                    ""
+                }
+
+                <button
+                class="btn btn-danger"
+                onclick="cancelAppointment(${appointment.id})">
+
+                Cancel Request
+
+                </button>
+
+            </div>
+
+            `;
+
+        })
+        .join("");
+
+    }
+
+
+    /* REMINDERS */
+
+    const reminderList =
+    document.getElementById(
+    "reminderList"
+    );
+
+
+    if(reminders.length===0){
+
+        reminderList.innerHTML =
+        `
+        <div class="empty">
+        🔔 No reminders available.
+        </div>
+        `;
+
+    }else{
+
+        reminderList.innerHTML =
+        reminders
+        .slice()
+        .reverse()
+        .map(function(reminder){
+
+            return `
+
+            <div class="reminder">
+
+                <strong>
+                🔔 ${escapeHTML(reminder.title)}
+                </strong>
+
+                <p>
+                ${escapeHTML(reminder.message)}
+                </p>
+
+            </div>
+
+            `;
+
+        })
+        .join("");
+
+    }
+
+}
+
+
+/* ================= CANCEL APPOINTMENT ================= */
+
+function cancelAppointment(id){
+
+    const confirmCancel =
+    confirm(
+    "Are you sure you want to cancel this appointment request?"
+    );
+
+
+    if(!confirmCancel){
+
+        return;
+
+    }
+
+
+    let appointments =
+    getData("macokiAppointments",[]);
+
+
+    appointments =
+    appointments.filter(function(appointment){
+
+        return appointment.id !== id;
+
+    });
+
+
+    saveData(
+    "macokiAppointments",
+    appointments
+    );
+
+
+    let reminders =
+    getData("macokiReminders",[]);
+
+
+    reminders =
+    reminders.filter(function(reminder){
+
+        return reminder.id !== id;
+
+    });
+
+
+    saveData(
+    "macokiReminders",
+    reminders
+    );
+
+
+    loadPortalData();
+
+}
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value){
+
+    return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================= TODAY'S DATE ================= */
+
+function setMinimumDate(){
+
+    const today =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+    const appointmentDate =
+    document.getElementById(
+    "appointmentDate"
+    );
+
+
+    if(appointmentDate){
+
+        appointmentDate.min=today;
+
+    }
+
+}
+
+
+/* ================= AUTO-FILL PROFILE ================= */
+
+function autoFillAppointment(){
+
+    const profile =
+    getData("macokiProfile",null);
+
+
+    if(!profile){
+
+        return;
+
+    }
+
+
+    const name =
+    document.getElementById(
+    "appointmentName"
+    );
+
+
+    const phone =
+    document.getElementById(
+    "appointmentPhone"
+    );
+
+
+    if(name && !name.value){
+
+        name.value =
+        profile.name || "";
+
+    }
+
+
+    if(phone && !phone.value){
+
+        phone.value =
+        profile.phone || "";
+
+    }
+
+}
+
+
+/* ================= START ================= */
+
+setMinimumDate();
+
+loadPortalData();
+
+autoFillAppointment();
+
+
+/*
+When the appointment page is opened,
+automatically fill the client details.
+*/
+
+document
+.getElementById("appointment")
+.addEventListener(
+"click",
+autoFillAppointment
+);
+
+</script>
+
+</body>
+</html>
