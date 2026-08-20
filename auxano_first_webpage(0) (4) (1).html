@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<link rel="stylesheet" href="style.css">/head>
+<html lang="en">  
+<link rel="stylesheet" href="style.css">/head>  
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,6 +118,10 @@ nav a:hover{
     background:#16a34a;
 }
 
+.btn-secondary{
+    background:#64748b;
+}
+
 section{
     padding:60px 20px;
 }
@@ -208,7 +212,7 @@ section{
     box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
-/* ================= CLIENT PORTAL ================= */
+/* ================= PORTAL ================= */
 
 #portal{
     background:#eaf6fa;
@@ -268,6 +272,8 @@ section{
     display:block;
 }
 
+/* Dashboard */
+
 .dashboard-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
@@ -279,6 +285,13 @@ section{
     padding:20px;
     border-radius:12px;
     background:#f1f8fa;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 .dashboard-card strong{
@@ -287,6 +300,8 @@ section{
     color:#075985;
     margin-top:5px;
 }
+
+/* Forms */
 
 .form-grid{
     display:grid;
@@ -395,6 +410,22 @@ textarea:focus{
     color:#64748b;
 }
 
+.portal-card{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.portal-card h3{
+    color:#075985;
+    margin-bottom:10px;
+}
+
+.whatsapp{
+    background:#16a34a;
+}
+
 .contact-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
@@ -408,11 +439,17 @@ footer{
     padding:35px 20px;
 }
 
-.whatsapp{
-    background:#16a34a;
+/* Login */
+
+.login-box{
+    max-width:500px;
+    margin:auto;
+    background:#f8fafc;
+    padding:25px;
+    border-radius:15px;
 }
 
-/* ================= MOBILE ================= */
+/* Mobile */
 
 @media(max-width:768px){
 
@@ -463,6 +500,10 @@ footer{
 
     .portal-nav button{
         min-width:50%;
+    }
+
+    section{
+        padding:40px 15px;
     }
 }
 </style>
@@ -917,7 +958,7 @@ professional service delivery.
 <h2>👤 MACOKI Client Portal</h2>
 
 <p>
-Manage your profile, appointments, services and reminders.
+Manage your profile, appointments, reminders and requests.
 </p>
 
 </div>
@@ -927,29 +968,48 @@ Manage your profile, appointments, services and reminders.
 
 <div class="portal-nav">
 
-<button class="active"
-onclick="showPortal('dashboard',this)">
+<button class="active" onclick="showPortal('dashboard',this)">
 🏠 Dashboard
 </button>
 
-<button
-onclick="showPortal('register',this)">
+<button onclick="showPortal('login',this)">
+🔐 Login/Register
+</button>
+
+<button onclick="showPortal('profile',this)">
 👤 My Profile
 </button>
 
-<button
-onclick="showPortal('appointment',this)">
+<button onclick="showPortal('appointment',this)">
 📅 Book Appointment
 </button>
 
-<button
-onclick="showPortal('appointments',this)">
-📋 My Appointments
+<button onclick="showPortal('appointments',this)">
+📋 Appointments
 </button>
 
-<button
-onclick="showPortal('reminders',this)">
+<button onclick="showPortal('history',this)">
+📚 History
+</button>
+
+<button onclick="showPortal('reminders',this)">
 🔔 Reminders
+</button>
+
+<button onclick="showPortal('manage',this)">
+🔄 Cancel/Reschedule
+</button>
+
+<button onclick="showPortal('emergency',this)">
+🆘 Emergency Contact
+</button>
+
+<button onclick="showPortal('health',this)">
+🩺 Health Information
+</button>
+
+<button onclick="showPortal('whatsapp',this)">
+💬 WhatsApp
 </button>
 
 </div>
@@ -962,36 +1022,68 @@ onclick="showPortal('reminders',this)">
 
 <div id="dashboard" class="portal-page active">
 
-<h2>Welcome to Your Client Dashboard</h2>
+<h2>🏠 MACOKI Client Dashboard</h2>
 
 <p id="welcomeMessage">
-Please complete your profile to begin.
+Welcome to the MACOKI Client Portal.
 </p>
 
 <div class="dashboard-grid">
 
-<div class="dashboard-card">
+<div class="dashboard-card"
+onclick="openPortalPage('profile')">
 👤
-<strong id="dashName">--</strong>
-Client
+<strong id="dashName">Client</strong>
+My Profile
 </div>
 
-<div class="dashboard-card">
+<div class="dashboard-card"
+onclick="openPortalPage('appointment')">
 📅
 <strong id="appointmentCount">0</strong>
-Appointments
+Book Appointment
 </div>
 
-<div class="dashboard-card">
+<div class="dashboard-card"
+onclick="openPortalPage('appointments')">
+📋
+<strong id="upcomingCount">0</strong>
+Upcoming
+</div>
+
+<div class="dashboard-card"
+onclick="openPortalPage('history')">
+📚
+<strong id="historyCount">0</strong>
+History
+</div>
+
+<div class="dashboard-card"
+onclick="openPortalPage('reminders')">
 🔔
 <strong id="reminderCount">0</strong>
 Reminders
 </div>
 
-<div class="dashboard-card">
-🏥
-<strong>MACOKI</strong>
-Clinic
+<div class="dashboard-card"
+onclick="openPortalPage('emergency')">
+🆘
+<strong>Emergency</strong>
+Contact
+</div>
+
+<div class="dashboard-card"
+onclick="openPortalPage('health')">
+🩺
+<strong>Health</strong>
+Information
+</div>
+
+<div class="dashboard-card"
+onclick="openPortalPage('whatsapp')">
+💬
+<strong>WhatsApp</strong>
+Contact MACOKI
 </div>
 
 </div>
@@ -1000,8 +1092,9 @@ Clinic
 
 <strong>Client Portal:</strong>
 
-Use this portal to submit appointment requests and manage your
-basic client information.
+You can register, save your profile, select a healthcare service,
+request appointments, view appointment information, manage reminders,
+and contact MACOKI.
 
 </div>
 
@@ -1009,37 +1102,107 @@ basic client information.
 
 <strong>Important:</strong>
 
-This is a front-end demonstration. Do not enter highly sensitive
-medical records into this prototype.
+This website is a front-end prototype. Do not enter highly sensitive
+medical information until a secure backend/database has been connected.
 
 </div>
 
-<button
-class="btn"
+<button class="btn"
 onclick="openPortalPage('appointment')">
-
 📅 Book Appointment
-
 </button>
 
-<button
-class="btn"
-onclick="openPortalPage('register')">
-
-👤 Complete Profile
-
+<button class="btn"
+onclick="openPortalPage('profile')">
+👤 Edit Profile
 </button>
+
+</div>
+
+
+<!-- ================= LOGIN / REGISTER ================= -->
+
+<div id="login" class="portal-page">
+
+<div class="login-box">
+
+<h2>🔐 Client Registration / Login</h2>
+
+<p>Create your client account information.</p>
+
+<br>
+
+<form id="loginForm">
+
+<div class="form-group">
+
+<label>Full Name *</label>
+
+<input
+type="text"
+id="loginName"
+required
+placeholder="Enter your full name">
+
+</div>
+
+<div class="form-group">
+
+<label>Phone Number *</label>
+
+<input
+type="tel"
+id="loginPhone"
+required
+placeholder="08012345678">
+
+</div>
+
+<div class="form-group">
+
+<label>Email Address</label>
+
+<input
+type="email"
+id="loginEmail"
+placeholder="example@email.com">
+
+</div>
+
+<div class="form-group">
+
+<label>Create Password *</label>
+
+<input
+type="password"
+id="loginPassword"
+required
+placeholder="Create password">
+
+</div>
+
+<button class="btn btn-success" type="submit">
+✅ Register / Login
+</button>
+
+</form>
+
+<div id="loginSuccess" class="success">
+✅ Client information saved successfully.
+</div>
+
+</div>
 
 </div>
 
 
 <!-- ================= PROFILE ================= -->
 
-<div id="register" class="portal-page">
+<div id="profile" class="portal-page">
 
-<h2>👤 Client Profile</h2>
+<h2>👤 Personal Profile</h2>
 
-<p>Enter your basic information below.</p>
+<p>Enter or edit your personal information.</p>
 
 <br>
 
@@ -1054,11 +1217,10 @@ onclick="openPortalPage('register')">
 <input
 type="text"
 id="clientName"
-placeholder="Enter your full name"
-required>
+required
+placeholder="Enter your full name">
 
 </div>
-
 
 <div class="form-group">
 
@@ -1067,11 +1229,10 @@ required>
 <input
 type="tel"
 id="clientPhone"
-placeholder="08012345678"
-required>
+required
+placeholder="08012345678">
 
 </div>
-
 
 <div class="form-group">
 
@@ -1084,7 +1245,6 @@ placeholder="example@email.com">
 
 </div>
 
-
 <div class="form-group">
 
 <label>Date of Birth</label>
@@ -1094,7 +1254,6 @@ type="date"
 id="clientDOB">
 
 </div>
-
 
 <div class="form-group">
 
@@ -1111,59 +1270,33 @@ id="clientDOB">
 
 </div>
 
-
 <div class="form-group">
-
-<label>Emergency Contact Name</label>
-
-<input
-type="text"
-id="emergencyName"
-placeholder="Emergency contact name">
-
-</div>
-
-
-<div class="form-group">
-
-<label>Emergency Contact Phone</label>
-
-<input
-type="tel"
-id="emergencyPhone"
-placeholder="Emergency contact phone">
-
-</div>
-
-
-<div class="form-group full">
 
 <label>Address</label>
 
-<textarea
+<input
+type="text"
 id="clientAddress"
-placeholder="Enter your address"></textarea>
+placeholder="Enter your address">
 
 </div>
 
 </div>
 
-<button
-class="btn"
-type="submit">
-
+<button class="btn btn-success" type="submit">
 💾 Save Profile
+</button>
 
+<button class="btn btn-secondary"
+type="button"
+onclick="loadProfile()">
+✏️ Edit / Reload
 </button>
 
 </form>
 
-<div
-id="profileSuccess"
-class="success">
-
-✅ Your profile has been saved successfully.
-
+<div id="profileSuccess" class="success">
+✅ Profile saved successfully.
 </div>
 
 </div>
@@ -1173,10 +1306,10 @@ class="success">
 
 <div id="appointment" class="portal-page">
 
-<h2>📅 Request an Appointment</h2>
+<h2>📅 Book Appointment</h2>
 
 <p>
-Choose the service you require and your preferred date and time.
+Select the healthcare service and preferred date and time.
 </p>
 
 <br>
@@ -1185,7 +1318,6 @@ Choose the service you require and your preferred date and time.
 
 <div class="form-grid">
 
-
 <div class="form-group">
 
 <label>Full Name *</label>
@@ -1193,11 +1325,10 @@ Choose the service you require and your preferred date and time.
 <input
 type="text"
 id="appointmentName"
-placeholder="Enter your full name"
-required>
+required
+placeholder="Enter full name">
 
 </div>
-
 
 <div class="form-group">
 
@@ -1206,23 +1337,18 @@ required>
 <input
 type="tel"
 id="appointmentPhone"
-placeholder="08012345678"
-required>
+required
+placeholder="08012345678">
 
 </div>
-
 
 <div class="form-group">
 
 <label>Healthcare Service *</label>
 
-<select
-id="service"
-required>
+<select id="service" required>
 
-<option value="">
-Choose a healthcare service
-</option>
+<option value="">Choose a service</option>
 
 <option>General Consultation</option>
 <option>Medical Services</option>
@@ -1234,29 +1360,23 @@ Choose a healthcare service
 <option>ENT Services</option>
 <option>Eye Care</option>
 <option>Dental Services</option>
-
 <option>Obstetrics & Gynaecology</option>
 <option>Midwifery Services</option>
 <option>Paediatrics & Child Health</option>
-
 <option>Public Health</option>
 <option>Community Health Services</option>
 <option>Nutrition & Dietetics</option>
-
 <option>Medical Laboratory Services</option>
 <option>Radiology & Medical Imaging</option>
 <option>Pharmacy Services</option>
 <option>Physiotherapy & Rehabilitation</option>
-
 <option>Health Information & Medical Records</option>
 <option>Infection Prevention & Control</option>
-
 <option>Other</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group">
 
@@ -1269,7 +1389,6 @@ required>
 
 </div>
 
-
 <div class="form-group">
 
 <label>Preferred Time *</label>
@@ -1280,7 +1399,6 @@ id="appointmentTime"
 required>
 
 </div>
-
 
 <div class="form-group">
 
@@ -1293,59 +1411,74 @@ required>
 <option>Health Education</option>
 <option>Community Health Consultation</option>
 <option>Maternity Consultation</option>
-<option>Other</option>
+<option>Child Health Consultation</option>
 
 </select>
 
 </div>
-
 
 <div class="form-group full">
 
 <label>Additional Information</label>
 
 <textarea
-id="appointmentNotes"
-placeholder="Briefly tell us what you need assistance with"></textarea>
+id="appointmentInfo"
+placeholder="Tell us anything relevant to your appointment request"></textarea>
 
 </div>
 
 </div>
 
-<button
-class="btn"
-type="submit">
-
-📅 Submit Appointment Request
-
+<button class="btn btn-success" type="submit">
+📤 Submit Appointment
 </button>
 
 </form>
 
-<div
-id="appointmentSuccess"
-class="success">
+<div id="appointmentSuccess" class="success">
+✅ Appointment request submitted successfully.
 </div>
 
 </div>
 
 
-<!-- ================= APPOINTMENT HISTORY ================= -->
+<!-- ================= APPOINTMENTS ================= -->
 
 <div id="appointments" class="portal-page">
 
-<h2>📋 My Appointments</h2>
+<h2>📋 Upcoming Appointments</h2>
 
-<p>
-View your submitted appointment requests below.
-</p>
+<p>View your submitted appointment requests.</p>
 
 <br>
 
 <div id="appointmentList">
 
 <div class="empty">
-No appointments have been booked yet.
+No appointments have been submitted yet.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= HISTORY ================= -->
+
+<div id="history" class="portal-page">
+
+<h2>📚 Appointment History</h2>
+
+<p>
+Your completed or cancelled appointment records will appear here.
+</p>
+
+<br>
+
+<div id="historyList">
+
+<div class="empty">
+No appointment history available.
 </div>
 
 </div>
@@ -1357,18 +1490,22 @@ No appointments have been booked yet.
 
 <div id="reminders" class="portal-page">
 
-<h2>🔔 Appointment Reminders</h2>
+<h2>🔔 Reminder Notifications</h2>
 
 <p>
-Your appointment reminders will appear here.
+Appointment reminders and important notifications.
 </p>
 
 <br>
 
 <div id="reminderList">
 
-<div class="empty">
-No reminders available.
+<div class="reminder">
+🔔 Remember to check your appointment date and time regularly.
+</div>
+
+<div class="reminder">
+🏥 Please arrive early for your scheduled clinic appointment.
 </div>
 
 </div>
@@ -1376,8 +1513,298 @@ No reminders available.
 </div>
 
 
+<!-- ================= CANCEL / RESCHEDULE ================= -->
+
+<div id="manage" class="portal-page">
+
+<h2>🔄 Cancel / Reschedule Appointment</h2>
+
+<p>
+Submit a request to cancel or change an appointment.
+</p>
+
+<br>
+
+<form id="manageForm">
+
+<div class="form-group">
+
+<label>Appointment Reference *</label>
+
+<input
+type="text"
+id="manageReference"
+required
+placeholder="Enter appointment reference">
+
 </div>
 
+<div class="form-group">
+
+<label>Request Type *</label>
+
+<select id="manageType" required>
+
+<option value="">Select request</option>
+<option>Cancel Appointment</option>
+<option>Reschedule Appointment</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>New Preferred Date</label>
+
+<input
+type="date"
+id="newDate">
+
+</div>
+
+<div class="form-group">
+
+<label>New Preferred Time</label>
+
+<input
+type="time"
+id="newTime">
+
+</div>
+
+<div class="form-group">
+
+<label>Reason / Additional Information</label>
+
+<textarea
+id="manageReason"
+placeholder="Enter your reason"></textarea>
+
+</div>
+
+<button class="btn btn-success" type="submit">
+📤 Submit Request
+</button>
+
+</form>
+
+<div id="manageSuccess" class="success">
+✅ Your request has been submitted.
+</div>
+
+</div>
+
+
+<!-- ================= EMERGENCY CONTACT ================= -->
+
+<div id="emergency" class="portal-page">
+
+<h2>🆘 Emergency Contact</h2>
+
+<p>
+Add or edit the person MACOKI can contact in an emergency.
+</p>
+
+<br>
+
+<form id="emergencyForm">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Contact Name *</label>
+
+<input
+type="text"
+id="emergencyName"
+required
+placeholder="Full name">
+
+</div>
+
+<div class="form-group">
+
+<label>Relationship</label>
+
+<select id="emergencyRelationship">
+
+<option>Spouse</option>
+<option>Parent</option>
+<option>Sibling</option>
+<option>Child</option>
+<option>Friend</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Phone Number *</label>
+
+<input
+type="tel"
+id="emergencyPhone"
+required
+placeholder="08012345678">
+
+</div>
+
+<div class="form-group">
+
+<label>Alternative Phone</label>
+
+<input
+type="tel"
+id="emergencyAlternative"
+placeholder="Alternative number">
+
+</div>
+
+</div>
+
+<button class="btn btn-success" type="submit">
+💾 Save Emergency Contact
+</button>
+
+</form>
+
+<div id="emergencySuccess" class="success">
+✅ Emergency contact saved successfully.
+</div>
+
+</div>
+
+
+<!-- ================= HEALTH INFORMATION ================= -->
+
+<div id="health" class="portal-page">
+
+<h2>🩺 Additional Health Information</h2>
+
+<p>
+Provide basic information that may assist healthcare professionals.
+</p>
+
+<div class="warning">
+Do not use this form for emergencies. For an emergency, contact emergency
+services or attend the appropriate emergency facility immediately.
+</div>
+
+<br>
+
+<form id="healthForm">
+
+<div class="form-group">
+
+<label>Known Allergies</label>
+
+<textarea
+id="allergies"
+placeholder="List known allergies or write None"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Current Medications</label>
+
+<textarea
+id="medications"
+placeholder="List current medications if applicable"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Relevant Medical Information</label>
+
+<textarea
+id="medicalInfo"
+placeholder="Enter relevant information"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Additional Notes</label>
+
+<textarea
+id="healthNotes"
+placeholder="Additional information"></textarea>
+
+</div>
+
+<button class="btn btn-success" type="submit">
+💾 Save Health Information
+</button>
+
+</form>
+
+<div id="healthSuccess" class="success">
+✅ Health information saved on this device.
+</div>
+
+</div>
+
+
+<!-- ================= WHATSAPP ================= -->
+
+<div id="whatsapp" class="portal-page">
+
+<h2>💬 Contact MACOKI on WhatsApp</h2>
+
+<p>
+Chat directly with MACOKI for general enquiries and appointment requests.
+</p>
+
+<br>
+
+<div class="portal-card">
+
+<h3>📱 WhatsApp</h3>
+
+<p>
+<strong>0705 347 7686</strong>
+</p>
+
+<a
+href="https://wa.me/2347053477686"
+target="_blank"
+class="btn whatsapp">
+
+💬 Chat on WhatsApp
+
+</a>
+
+</div>
+
+<div class="portal-card">
+
+<h3>📞 Phone</h3>
+
+<p>0903 727 7433</p>
+<p>0705 347 7686</p>
+
+</div>
+
+<div class="portal-card">
+
+<h3>📧 Email</h3>
+
+<p>
+macokiclinicandmaternityhome@gmail.com
+</p>
+
+</div>
+
+</div>
+
+
+</div>
 </div>
 
 </section>
@@ -1391,9 +1818,9 @@ No reminders available.
 
 <div class="section-title">
 
-<h2>📞 Get in Touch</h2>
+<h2>📞 Contact MACOKI</h2>
 
-<p>Contact MACOKI</p>
+<p>We are here to assist you.</p>
 
 </div>
 
@@ -1413,6 +1840,15 @@ CHP · PHP
 
 </div>
 
+<div class="card">
+
+<h3>📱 Phone</h3>
+
+<p>0903 727 7433</p>
+
+<p>0705 347 7686</p>
+
+</div>
 
 <div class="card">
 
@@ -1424,32 +1860,16 @@ macokiclinicandmaternityhome@gmail.com
 
 </div>
 
-
-<div class="card">
-
-<h3>📞 Phone</h3>
-
-<p>0903 727 7433</p>
-<p>0705 347 7686</p>
-
-</div>
-
-
 <div class="card">
 
 <h3>💬 WhatsApp</h3>
 
-<p>
-Chat with MACOKI directly for enquiries and appointment requests.
-</p>
-
 <a
-class="btn whatsapp"
-href="https://wa.me/2349037277433"
+href="https://wa.me/2347053477686"
 target="_blank"
-rel="noopener">
+class="btn whatsapp">
 
-💬 Chat on WhatsApp
+Chat on WhatsApp
 
 </a>
 
@@ -1466,11 +1886,11 @@ rel="noopener">
 
 <footer>
 
-<h2>💙 MACOKI Clinic and Maternity Home</h2>
+<h3>🏥 MACOKI Clinic and Maternity Home</h3>
 
-<p>Your health. Our commitment.</p>
-
-<br>
+<p>
+Your health. Our commitment.
+</p>
 
 <p>
 Caring for Individuals · Supporting Families ·
@@ -1480,14 +1900,14 @@ Promoting Healthier Communities
 <br>
 
 <p>
-MACOKI — Where Healthcare Meets Compassion.
+© 2026 MACOKI Clinic & Maternity Home
 </p>
 
 </footer>
 
 
 <!-- =====================================================
-                       JAVASCRIPT
+                    JAVASCRIPT
 ===================================================== -->
 
 <script>
@@ -1496,8 +1916,7 @@ MACOKI — Where Healthcare Meets Compassion.
 
 function toggleMenu(){
 
-    document
-    .getElementById("mainNav")
+    document.getElementById("mainNav")
     .classList.toggle("show");
 
 }
@@ -1507,641 +1926,296 @@ function toggleMenu(){
 
 function showPortal(pageId, button){
 
-    document
-    .querySelectorAll(".portal-page")
-    .forEach(function(page){
-
+    document.querySelectorAll(".portal-page")
+    .forEach(page => {
         page.classList.remove("active");
-
     });
 
+    document.getElementById(pageId)
+    .classList.add("active");
 
-    const selectedPage =
-    document.getElementById(pageId);
-
-    if(selectedPage){
-
-        selectedPage.classList.add("active");
-
-    }
-
-
-    document
-    .querySelectorAll(".portal-nav button")
-    .forEach(function(btn){
-
+    document.querySelectorAll(".portal-nav button")
+    .forEach(btn => {
         btn.classList.remove("active");
-
     });
-
 
     if(button){
-
         button.classList.add("active");
-
     }
 
-
-    loadPortalData();
+    updatePortal();
 
 }
 
-
-/* ================= OPEN PORTAL PAGE ================= */
 
 function openPortalPage(pageId){
 
-    showPortal(pageId,null);
+    document.querySelectorAll(".portal-page")
+    .forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId)
+    .classList.add("active");
+
+    document.getElementById("portal")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
 
 }
 
 
-/* ================= STORAGE CHECK ================= */
+/* ================= PROFILE ================= */
 
-function storageAvailable(){
+const profileForm =
+document.getElementById("profileForm");
 
-    try{
+profileForm.addEventListener("submit",function(e){
 
-        const testKey =
-        "__macoki_storage_test__";
-
-        localStorage.setItem(testKey,"1");
-
-        localStorage.removeItem(testKey);
-
-        return true;
-
-    }catch(error){
-
-        return false;
-
-    }
-
-}
-
-
-/* ================= SAFE STORAGE ================= */
-
-function saveData(key,value){
-
-    if(!storageAvailable()){
-
-        alert(
-        "Browser storage is unavailable. Please check your browser settings."
-        );
-
-        return false;
-
-    }
-
-    localStorage.setItem(
-        key,
-        JSON.stringify(value)
-    );
-
-    return true;
-
-}
-
-
-function getData(key, fallback){
-
-    if(!storageAvailable()){
-
-        return fallback;
-
-    }
-
-
-    try{
-
-        const data =
-        localStorage.getItem(key);
-
-        return data
-        ? JSON.parse(data)
-        : fallback;
-
-    }catch(error){
-
-        return fallback;
-
-    }
-
-}
-
-
-/* ================= PROFILE FORM ================= */
-
-document
-.getElementById("profileForm")
-.addEventListener("submit",function(event){
-
-    event.preventDefault();
-
+    e.preventDefault();
 
     const profile = {
 
-        name:
-        document.getElementById("clientName").value.trim(),
+        name:document.getElementById("clientName").value,
 
-        phone:
-        document.getElementById("clientPhone").value.trim(),
+        phone:document.getElementById("clientPhone").value,
 
-        email:
-        document.getElementById("clientEmail").value.trim(),
+        email:document.getElementById("clientEmail").value,
 
-        dob:
-        document.getElementById("clientDOB").value,
+        dob:document.getElementById("clientDOB").value,
 
-        gender:
-        document.getElementById("clientGender").value,
+        gender:document.getElementById("clientGender").value,
 
-        emergencyName:
-        document.getElementById("emergencyName").value.trim(),
-
-        emergencyPhone:
-        document.getElementById("emergencyPhone").value.trim(),
-
-        address:
-        document.getElementById("clientAddress").value.trim()
+        address:document.getElementById("clientAddress").value
 
     };
 
+    localStorage.setItem(
+        "macokiProfile",
+        JSON.stringify(profile)
+    );
 
-    if(saveData("macokiProfile",profile)){
+    document.getElementById("profileSuccess")
+    .style.display="block";
 
-        const message =
-        document.getElementById("profileSuccess");
-
-        message.style.display="block";
-
-
-        setTimeout(function(){
-
-            message.style.display="none";
-
-        },4000);
-
-
-        loadPortalData();
-
-    }
+    updatePortal();
 
 });
 
 
-/* ================= APPOINTMENT FORM ================= */
+function loadProfile(){
 
-document
-.getElementById("appointmentForm")
-.addEventListener("submit",function(event){
+    const saved =
+    localStorage.getItem("macokiProfile");
 
-    event.preventDefault();
+    if(!saved) return;
 
+    const profile =
+    JSON.parse(saved);
 
-    const name =
-    document
-    .getElementById("appointmentName")
-    .value
-    .trim();
+    document.getElementById("clientName").value =
+    profile.name || "";
 
+    document.getElementById("clientPhone").value =
+    profile.phone || "";
 
-    const phone =
-    document
-    .getElementById("appointmentPhone")
-    .value
-    .trim();
+    document.getElementById("clientEmail").value =
+    profile.email || "";
 
+    document.getElementById("clientDOB").value =
+    profile.dob || "";
 
-    const service =
-    document
-    .getElementById("service")
-    .value;
+    document.getElementById("clientGender").value =
+    profile.gender || "";
 
+    document.getElementById("clientAddress").value =
+    profile.address || "";
 
-    const date =
-    document
-    .getElementById("appointmentDate")
-    .value;
+}
 
 
-    const time =
-    document
-    .getElementById("appointmentTime")
-    .value;
+/* ================= LOGIN / REGISTER ================= */
+
+document.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const account = {
+
+        name:document.getElementById("loginName").value,
+
+        phone:document.getElementById("loginPhone").value,
+
+        email:document.getElementById("loginEmail").value
+
+    };
+
+    localStorage.setItem(
+        "macokiAccount",
+        JSON.stringify(account)
+    );
+
+    document.getElementById("loginSuccess")
+    .style.display="block";
+
+    document.getElementById("clientName").value =
+    account.name;
+
+    document.getElementById("clientPhone").value =
+    account.phone;
+
+    document.getElementById("clientEmail").value =
+    account.email;
+
+    updatePortal();
+
+});
 
 
-    if(!name || !phone || !service || !date || !time){
+/* ================= APPOINTMENT ================= */
 
-        alert(
-        "Please complete all required appointment fields."
-        );
+document.getElementById("appointmentForm")
+.addEventListener("submit",function(e){
 
-        return;
-
-    }
-
+    e.preventDefault();
 
     const appointment = {
 
-        id:Date.now(),
+        id:"MAC-" +
+        Date.now(),
 
-        name:name,
+        name:
+        document.getElementById("appointmentName").value,
 
-        phone:phone,
+        phone:
+        document.getElementById("appointmentPhone").value,
 
-        service:service,
+        service:
+        document.getElementById("service").value,
 
-        date:date,
+        date:
+        document.getElementById("appointmentDate").value,
 
-        time:time,
+        time:
+        document.getElementById("appointmentTime").value,
 
         type:
-        document
-        .getElementById("appointmentType")
-        .value,
+        document.getElementById("appointmentType").value,
 
-        notes:
-        document
-        .getElementById("appointmentNotes")
-        .value
-        .trim(),
+        information:
+        document.getElementById("appointmentInfo").value,
 
         status:"Pending Confirmation",
 
         createdAt:
-        new Date().toISOString()
+        new Date().toLocaleString()
 
     };
 
-
-    const appointments =
-    getData("macokiAppointments",[]);
-
+    let appointments =
+    JSON.parse(
+        localStorage.getItem("macokiAppointments")
+    ) || [];
 
     appointments.push(appointment);
 
+    localStorage.setItem(
+        "macokiAppointments",
+        JSON.stringify(appointments)
+    );
 
-    if(saveData("macokiAppointments",appointments)){
+    document.getElementById("appointmentSuccess")
+    .style.display="block";
 
-        createReminder(appointment);
+    this.reset();
 
+    renderAppointments();
 
-        const success =
-        document.getElementById(
-        "appointmentSuccess"
-        );
-
-
-        success.innerHTML =
-        "✅ Appointment request submitted successfully. " +
-        "MACOKI will confirm your appointment.";
-
-
-        success.style.display="block";
-
-
-        document
-        .getElementById("appointmentForm")
-        .reset();
-
-
-        loadPortalData();
-
-
-        /*
-        WhatsApp message
-        */
-
-        const whatsappText =
-        "Hello MACOKI Clinic and Maternity Home.%0A%0A" +
-
-        "I have submitted an appointment request.%0A%0A" +
-
-        "Name: " +
-        encodeURIComponent(name) +
-
-        "%0APhone: " +
-        encodeURIComponent(phone) +
-
-        "%0AService: " +
-        encodeURIComponent(service) +
-
-        "%0ADate: " +
-        encodeURIComponent(date) +
-
-        "%0ATime: " +
-        encodeURIComponent(time) +
-
-        "%0AAppointment Type: " +
-        encodeURIComponent(appointment.type);
-
-
-        const whatsappURL =
-        "https://wa.me/2349037277433?text=" +
-        whatsappText;
-
-
-        setTimeout(function(){
-
-            window.open(
-            whatsappURL,
-            "_blank"
-            );
-
-        },700);
-
-
-        setTimeout(function(){
-
-            success.style.display="none";
-
-        },7000);
-
-    }
+    updatePortal();
 
 });
 
 
-/* ================= CREATE REMINDER ================= */
+/* ================= APPOINTMENT DISPLAY ================= */
 
-function createReminder(appointment){
+function renderAppointments(){
 
-    const reminders =
-    getData("macokiReminders",[]);
-
-
-    reminders.push({
-
-        id:appointment.id,
-
-        title:"Appointment Reminder",
-
-        message:
-        "Appointment requested for " +
-        appointment.service +
-        " on " +
-        appointment.date +
-        " at " +
-        appointment.time,
-
-        date:appointment.date,
-
-        time:appointment.time
-
-    });
-
-
-    saveData(
-    "macokiReminders",
-    reminders
-    );
-
-}
-
-
-/* ================= LOAD PORTAL ================= */
-
-function loadPortalData(){
-
-    const profile =
-    getData("macokiProfile",null);
-
+    const list =
+    document.getElementById("appointmentList");
 
     const appointments =
-    getData("macokiAppointments",[]);
+    JSON.parse(
+        localStorage.getItem("macokiAppointments")
+    ) || [];
 
+    if(appointments.length === 0){
 
-    const reminders =
-    getData("macokiReminders",[]);
+        list.innerHTML =
+        '<div class="empty">No appointments have been submitted yet.</div>';
 
-
-    /* PROFILE */
-
-    if(profile){
-
-        document
-        .getElementById("clientName")
-        .value =
-        profile.name || "";
-
-
-        document
-        .getElementById("clientPhone")
-        .value =
-        profile.phone || "";
-
-
-        document
-        .getElementById("clientEmail")
-        .value =
-        profile.email || "";
-
-
-        document
-        .getElementById("clientDOB")
-        .value =
-        profile.dob || "";
-
-
-        document
-        .getElementById("clientGender")
-        .value =
-        profile.gender || "";
-
-
-        document
-        .getElementById("emergencyName")
-        .value =
-        profile.emergencyName || "";
-
-
-        document
-        .getElementById("emergencyPhone")
-        .value =
-        profile.emergencyPhone || "";
-
-
-        document
-        .getElementById("clientAddress")
-        .value =
-        profile.address || "";
-
-
-        document
-        .getElementById("dashName")
-        .textContent =
-        profile.name || "--";
-
-
-        document
-        .getElementById("welcomeMessage")
-        .textContent =
-        "Welcome, " +
-        profile.name +
-        ". Manage your MACOKI appointments below.";
-
+        return;
     }
 
+    list.innerHTML = "";
 
-    /* APPOINTMENT COUNT */
+    appointments.forEach(function(a){
 
-    document
-    .getElementById("appointmentCount")
-    .textContent =
-    appointments.length;
+        const card =
+        document.createElement("div");
 
+        card.className =
+        "appointment-card";
 
-    /* REMINDER COUNT */
+        card.innerHTML = `
 
-    document
-    .getElementById("reminderCount")
-    .textContent =
-    reminders.length;
+        <h3>🏥 ${escapeHTML(a.service)}</h3>
 
+        <p>
+        <strong>Reference:</strong>
+        ${escapeHTML(a.id)}
+        </p>
 
-    /* APPOINTMENT LIST */
+        <p>
+        <strong>Name:</strong>
+        ${escapeHTML(a.name)}
+        </p>
 
-    const appointmentList =
-    document.getElementById(
-    "appointmentList"
-    );
+        <p>
+        <strong>Date:</strong>
+        ${escapeHTML(a.date)}
+        </p>
 
+        <p>
+        <strong>Time:</strong>
+        ${escapeHTML(a.time)}
+        </p>
 
-    if(appointments.length===0){
+        <p>
+        <strong>Type:</strong>
+        ${escapeHTML(a.type)}
+        </p>
 
-        appointmentList.innerHTML =
-        `
-        <div class="empty">
-        📅 No appointments have been booked yet.
-        </div>
+        <p>
+        <span class="status">
+        ${escapeHTML(a.status)}
+        </span>
+        </p>
+
+        <button
+        class="btn btn-danger"
+        onclick="cancelAppointment('${a.id}')">
+
+        Cancel
+
+        </button>
+
         `;
 
-    }else{
+        list.appendChild(card);
 
-        appointmentList.innerHTML =
-        appointments
-        .slice()
-        .reverse()
-        .map(function(appointment){
-
-            return `
-
-            <div class="appointment-card">
-
-                <h3>
-                🏥 ${escapeHTML(appointment.service)}
-                </h3>
-
-                <p>
-                <strong>Patient:</strong>
-                ${escapeHTML(appointment.name)}
-                </p>
-
-                <p>
-                <strong>Phone:</strong>
-                ${escapeHTML(appointment.phone)}
-                </p>
-
-                <p>
-                <strong>Date:</strong>
-                ${escapeHTML(appointment.date)}
-                </p>
-
-                <p>
-                <strong>Time:</strong>
-                ${escapeHTML(appointment.time)}
-                </p>
-
-                <p>
-                <strong>Type:</strong>
-                ${escapeHTML(appointment.type)}
-                </p>
-
-                <p>
-                <strong>Status:</strong>
-                <span class="status">
-                ${escapeHTML(appointment.status)}
-                </span>
-                </p>
-
-                ${
-                    appointment.notes
-                    ?
-                    `
-                    <p>
-                    <strong>Additional information:</strong>
-                    ${escapeHTML(appointment.notes)}
-                    </p>
-                    `
-                    :
-                    ""
-                }
-
-                <button
-                class="btn btn-danger"
-                onclick="cancelAppointment(${appointment.id})">
-
-                Cancel Request
-
-                </button>
-
-            </div>
-
-            `;
-
-        })
-        .join("");
-
-    }
-
-
-    /* REMINDERS */
-
-    const reminderList =
-    document.getElementById(
-    "reminderList"
-    );
-
-
-    if(reminders.length===0){
-
-        reminderList.innerHTML =
-        `
-        <div class="empty">
-        🔔 No reminders available.
-        </div>
-        `;
-
-    }else{
-
-        reminderList.innerHTML =
-        reminders
-        .slice()
-        .reverse()
-        .map(function(reminder){
-
-            return `
-
-            <div class="reminder">
-
-                <strong>
-                🔔 ${escapeHTML(reminder.title)}
-                </strong>
-
-                <p>
-                ${escapeHTML(reminder.message)}
-                </p>
-
-            </div>
-
-            `;
-
-        })
-        .join("");
-
-    }
+    });
 
 }
 
@@ -2150,56 +2224,270 @@ function loadPortalData(){
 
 function cancelAppointment(id){
 
-    const confirmCancel =
-    confirm(
-    "Are you sure you want to cancel this appointment request?"
+    let appointments =
+    JSON.parse(
+        localStorage.getItem("macokiAppointments")
+    ) || [];
+
+    const appointment =
+    appointments.find(a => a.id === id);
+
+    if(!appointment) return;
+
+    appointment.status =
+    "Cancellation Requested";
+
+    localStorage.setItem(
+        "macokiAppointments",
+        JSON.stringify(appointments)
     );
 
+    renderAppointments();
 
-    if(!confirmCancel){
+    alert(
+        "Cancellation request submitted for " + id
+    );
+
+}
+
+
+/* ================= HISTORY ================= */
+
+function renderHistory(){
+
+    const list =
+    document.getElementById("historyList");
+
+    const appointments =
+    JSON.parse(
+        localStorage.getItem("macokiAppointments")
+    ) || [];
+
+    const history =
+    appointments.filter(a =>
+        a.status !== "Pending Confirmation" &&
+        a.status !== "Confirmed"
+    );
+
+    if(history.length === 0){
+
+        list.innerHTML =
+        '<div class="empty">No appointment history available.</div>';
 
         return;
 
     }
 
+    list.innerHTML = "";
 
-    let appointments =
-    getData("macokiAppointments",[]);
+    history.forEach(function(a){
 
+        const div =
+        document.createElement("div");
 
-    appointments =
-    appointments.filter(function(appointment){
+        div.className =
+        "appointment-card";
 
-        return appointment.id !== id;
+        div.innerHTML = `
+
+        <h3>${escapeHTML(a.service)}</h3>
+
+        <p>
+        Reference:
+        <strong>${escapeHTML(a.id)}</strong>
+        </p>
+
+        <p>
+        Date: ${escapeHTML(a.date)}
+        </p>
+
+        <p>
+        Status:
+        <span class="status">
+        ${escapeHTML(a.status)}
+        </span>
+        </p>
+
+        `;
+
+        list.appendChild(div);
 
     });
 
+}
 
-    saveData(
-    "macokiAppointments",
-    appointments
+
+/* ================= MANAGE APPOINTMENT ================= */
+
+document.getElementById("manageForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const request = {
+
+        reference:
+        document.getElementById("manageReference").value,
+
+        type:
+        document.getElementById("manageType").value,
+
+        newDate:
+        document.getElementById("newDate").value,
+
+        newTime:
+        document.getElementById("newTime").value,
+
+        reason:
+        document.getElementById("manageReason").value,
+
+        submitted:
+        new Date().toLocaleString()
+
+    };
+
+    let requests =
+    JSON.parse(
+        localStorage.getItem("macokiManageRequests")
+    ) || [];
+
+    requests.push(request);
+
+    localStorage.setItem(
+        "macokiManageRequests",
+        JSON.stringify(requests)
     );
 
+    document.getElementById("manageSuccess")
+    .style.display="block";
 
-    let reminders =
-    getData("macokiReminders",[]);
+    this.reset();
 
-
-    reminders =
-    reminders.filter(function(reminder){
-
-        return reminder.id !== id;
-
-    });
+});
 
 
-    saveData(
-    "macokiReminders",
-    reminders
+/* ================= EMERGENCY CONTACT ================= */
+
+document.getElementById("emergencyForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const contact = {
+
+        name:
+        document.getElementById("emergencyName").value,
+
+        relationship:
+        document.getElementById("emergencyRelationship").value,
+
+        phone:
+        document.getElementById("emergencyPhone").value,
+
+        alternative:
+        document.getElementById("emergencyAlternative").value
+
+    };
+
+    localStorage.setItem(
+        "macokiEmergency",
+        JSON.stringify(contact)
     );
 
+    document.getElementById("emergencySuccess")
+    .style.display="block";
 
-    loadPortalData();
+});
+
+
+/* ================= HEALTH INFORMATION ================= */
+
+document.getElementById("healthForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const health = {
+
+        allergies:
+        document.getElementById("allergies").value,
+
+        medications:
+        document.getElementById("medications").value,
+
+        medicalInfo:
+        document.getElementById("medicalInfo").value,
+
+        notes:
+        document.getElementById("healthNotes").value
+
+    };
+
+    localStorage.setItem(
+        "macokiHealth",
+        JSON.stringify(health)
+    );
+
+    document.getElementById("healthSuccess")
+    .style.display="block";
+
+});
+
+
+/* ================= DASHBOARD UPDATE ================= */
+
+function updatePortal(){
+
+    const profile =
+    JSON.parse(
+        localStorage.getItem("macokiProfile")
+    );
+
+    const account =
+    JSON.parse(
+        localStorage.getItem("macokiAccount")
+    );
+
+    let name = "Client";
+
+    if(profile && profile.name){
+        name = profile.name;
+    }
+    else if(account && account.name){
+        name = account.name;
+    }
+
+    document.getElementById("dashName")
+    .textContent = name;
+
+    document.getElementById("welcomeMessage")
+    .textContent =
+    "Welcome, " + name + ". Manage your MACOKI healthcare requests below.";
+
+    const appointments =
+    JSON.parse(
+        localStorage.getItem("macokiAppointments")
+    ) || [];
+
+    document.getElementById("appointmentCount")
+    .textContent =
+    appointments.length;
+
+    document.getElementById("upcomingCount")
+    .textContent =
+    appointments.filter(a =>
+        a.status !== "Cancellation Requested"
+    ).length;
+
+    document.getElementById("historyCount")
+    .textContent =
+    appointments.filter(a =>
+        a.status === "Cancellation Requested"
+    ).length;
+
+    document.getElementById("reminderCount")
+    .textContent =
+    appointments.length;
 
 }
 
@@ -2218,96 +2506,22 @@ function escapeHTML(value){
 }
 
 
-/* ================= TODAY'S DATE ================= */
+/* ================= LOAD SAVED DATA ================= */
 
-function setMinimumDate(){
+document.addEventListener(
+"DOMContentLoaded",
+function(){
 
-    const today =
-    new Date()
-    .toISOString()
-    .split("T")[0];
+    loadProfile();
 
+    renderAppointments();
 
-    const appointmentDate =
-    document.getElementById(
-    "appointmentDate"
-    );
+    renderHistory();
 
+    updatePortal();
 
-    if(appointmentDate){
+});
 
-        appointmentDate.min=today;
-
-    }
-
-}
-
-
-/* ================= AUTO-FILL PROFILE ================= */
-
-function autoFillAppointment(){
-
-    const profile =
-    getData("macokiProfile",null);
-
-
-    if(!profile){
-
-        return;
-
-    }
-
-
-    const name =
-    document.getElementById(
-    "appointmentName"
-    );
-
-
-    const phone =
-    document.getElementById(
-    "appointmentPhone"
-    );
-
-
-    if(name && !name.value){
-
-        name.value =
-        profile.name || "";
-
-    }
-
-
-    if(phone && !phone.value){
-
-        phone.value =
-        profile.phone || "";
-
-    }
-
-}
-
-
-/* ================= START ================= */
-
-setMinimumDate();
-
-loadPortalData();
-
-autoFillAppointment();
-
-
-/*
-When the appointment page is opened,
-automatically fill the client details.
-*/
-
-document
-.getElementById("appointment")
-.addEventListener(
-"click",
-autoFillAppointment
-);
 
 </script>
 
